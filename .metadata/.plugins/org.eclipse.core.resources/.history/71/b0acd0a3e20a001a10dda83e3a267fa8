@@ -1,0 +1,46 @@
+package com.github.zerenat.SurveyApplication.GUI;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+
+public class LoginPageGUI {
+	public static LoginPageGUI instance = new LoginPageGUI();
+	private Scene loginPageScene;
+
+	private LoginPageGUI() {
+		BorderPane root = new BorderPane();
+		loginPageScene = new Scene(root, 500, 600);
+
+		TextField userIDfield = new TextField();
+		userIDfield.setPromptText("Username");
+
+		TextField userPasswordField = new TextField();
+		userPasswordField.setPromptText("Password");
+		
+		Button loginButton = new Button();
+		loginButton.setText("Login");
+		
+		Button backButton = new Button();
+		backButton.setText("Back");
+		
+		Node [] nodeList = new Node [] {userIDfield, userPasswordField, loginButton, backButton};
+		
+		VBox centerContainer = new VBox();
+		centerContainer.setMaxWidth(200);
+ 		centerContainer.setMaxHeight(200);
+		centerContainer.getChildren().addAll(nodeList);
+		
+		root.setCenter(centerContainer);
+	}
+
+	public static LoginPageGUI getInstance() {
+		return instance;
+	}
+
+	public Scene getLoginPageScene() {
+		return loginPageScene;
+	}
+}

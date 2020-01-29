@@ -1,0 +1,47 @@
+1574089607712	Rename field 'makeSurvey'
+1574162072282	Delete element
+1574164687481	Move compilation unit
+1574164712851	Move compilation unit
+1574164724236	Move compilation unit
+1574164769382	Move compilation unit
+1574164845232	Move compilation unit
+1574165042039	Move compilation units
+1574165105734	Move compilation unit
+1574165117727	Move compilation units
+1574165383861	Rename package 'com.github.zerenat.SurveyApplication'
+1574165417022	Rename package 'com.github.zerenat.SurveyApplicationGUI'
+1574165448601	Rename package 'com.github.zerenat.SurveyApplication.surveyApplication'
+1574170064160	Rename field 'loginPageGUI'
+1574170212681	Rename field 'constructSurveyGUI'
+1574170238943	Rename type 'ConstructSurveyGUI'
+1574171029749	Rename type 'getInstance'
+1574171388289	Rename local variable 'nodeContainer'
+1574171568513	Rename local variable 'centreContainer'
+1574171593591	Rename local variable 'centreContainer'
+1574173194348	Rename local variable 'submitButton'
+1574174066493	Rename type 'Main'
+1574177087815	Rename field 'makeSurveyScene'
+1574255909135	Rename local variable 'node'
+1574346683815	Rename type 'DatabaseCommunication'
+1574376028227	Rename local variable 'urlc'
+1574376087542	Rename local variable 'br'
+1574377258980	Rename local variable 'l'
+1574426811638	Rename local variable 'temp'
+1574428528540	Rename field 'serverInput'
+1574428534335	Rename field 'clientOutput'
+1574429268824	Rename field 'clientOutputObject'
+1574443785061	Copy compilation unit
+1574510245490	Rename type 'DataReceiverThread'
+1574511146734	Copy compilation unit
+1574516527968	Rename local variable 't'
+1574516544480	Rename local variable 'message'
+1574520350492	Rename local variable 'userIDField'
+1574531118903	Rename local variable 'username'
+1574531126827	Rename local variable 'EMAIL'
+1574531948691	Delete element
+1574602577206	Rename local variable 'jObject'
+1574602652794	Rename local variable 'jArray'
+1574602671846	Rename local variable 'outerObject'
+1574606664911	Rename local variable 'jArray'
+1574606686857	Rename local variable 'temp'
+1574607736508	Rename local variable 'placeHolderr'

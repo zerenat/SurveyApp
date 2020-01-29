@@ -1,0 +1,5 @@
+package com.github.zerenat.SurveyApplication.GUI;
+
+public interface GUIPageInterface {
+
+}

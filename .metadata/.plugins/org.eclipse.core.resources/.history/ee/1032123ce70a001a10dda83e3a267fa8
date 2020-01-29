@@ -1,0 +1,52 @@
+package com.github.zerenat.SurveyApplication.GUI;
+
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+
+public class RegisterPageGUI implements GUIPageInterface{
+	public static RegisterPageGUI instance = new RegisterPageGUI();
+	private Scene registerPageScene; 
+	
+	private RegisterPageGUI() {
+		BorderPane root = new BorderPane();
+		registerPageScene = new Scene (root, 500, 600);
+		
+		TextField username = new TextField();
+		username.setPromptText("Username");
+		TextField password = new TextField();
+		password.setPromptText("Password");
+		TextField email = new TextField();
+		email.setPromptText("E-mail");
+		
+		Button submitButton = new Button();
+		submitButton.setText("Submit");
+		
+		Button backButton = new Button();
+		backButton.setText("Back");
+		
+		
+		root.getChildren().addAll(username, password, email);
+ 		Node [] nodeList = new Node [] {username, password, email, submitButton, backButton};
+ 		
+ 		VBox centerContainer = new VBox ();
+ 		centerContainer.setMaxWidth(200);
+ 		centerContainer.setMaxHeight(200);
+ 		centerContainer.getChildren().addAll(nodeList);
+ 		
+		root.setCenter(centerContainer);
+	}
+	
+	@Override
+	public RegisterPageGUI getInstance() {
+		return instance;
+	}
+
+	@Override
+	public Scene getScene() {
+		return registerPageScene;
+	}
+}

@@ -1,0 +1,21 @@
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+
+public class ConstructSurveyGUI {
+	private Scene makeSurvey;
+	public static ConstructSurveyGUI constructSurveyGUI = new ConstructSurveyGUI();
+	
+	private ConstructSurveyGUI() {
+		StackPane root = new StackPane();
+	    this.makeSurvey = new Scene(root, 200,200);
+	}
+	public static ConstructSurveyGUI getInstance() {
+		return constructSurveyGUI;
+	}
+	public Scene getConstructSurveyScene() {
+		return makeSurvey;
+	}
+}

@@ -1,0 +1,155 @@
+package com.github.zerenat.SurveyApplication.GUI;
+
+import java.util.HashMap;
+
+import com.github.zerenat.SurveyApplication.application.Survey;
+
+import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.VBox;
+
+public class CreateSurveyPageGUI {
+	public static CreateSurveyPageGUI instance = new CreateSurveyPageGUI();
+
+	private Scene makeSurveyScene;
+	private TextInputDialog textInputDialog;
+	private TextField surveyNameField;
+	private Survey survey;
+	private int questionCount;
+	private boolean surveyExists;
+
+	private CreateSurveyPageGUI() {
+		surveyExists = false;
+		questionCount = 0;
+		GridPane root = new GridPane();
+		makeSurveyScene = new Scene(root, 500, 600);
+
+		Label surveyNameLabel = new Label("Survey name:");
+		surveyNameLabel.setText("Survey Name");
+		surveyNameField = new TextField();
+		VBox questionList = new VBox();
+		questionList.setSpacing(10);
+
+		// root.setColumnSpan(surveyNameField, 3);
+		Button addQuestionButton = new Button("Add question");
+		Button saveSurvey = new Button("Save Survey");
+
+		// root.setGridLinesVisible(true);
+		ColumnConstraints columnConstraints = new ColumnConstraints();
+		columnConstraints.setFillWidth(false);
+		root.setHgap(10);
+		root.setVgap(10);
+
+		RowConstraints rowConstraints = new RowConstraints();
+		rowConstraints.setPercentHeight(10);
+
+		root.getColumnConstraints().add(columnConstraints);
+		root.getRowConstraints().add(rowConstraints);
+
+		addQuestionButtonFunctionality(addQuestionButton, surveyNameField, questionList);
+
+		saveSurvey.setOnAction(event -> {
+			saveSurvey(questionList);
+		});
+
+		root.add(surveyNameLabel, 1, 0);
+		root.add(surveyNameField, 2, 0);
+		root.add(questionList, 2, 1);
+		root.add(addQuestionButton, 2, 2);
+		root.add(saveSurvey, 2, 3);
+
+	}
+
+	private void addQuestionButtonFunctionality(Button addQuestionButton, TextField surveyNameField,
+			VBox questionList) {
+		addQuestionButton.setOnAction(event -> {
+			if (surveyNameField.getLength() > 0) {
+				textInputDialog = createDialog("Enter a question: ");
+				String newQuestion = textInputDialog.showAndWait().get();
+
+				questionCount++;
+				HBox questionRow = new HBox();
+				VBox answerList = new VBox();
+
+				Label questionNameLabel = new Label();
+				questionNameLabel.setText(questionCount + ". ");
+
+				TextField questionNameField = new TextField();
+				questionNameField.setText(newQuestion);
+
+				Button addAnswerButton = new Button("Add Answer");
+				addAnswerButtonFunctionality(answerList, addAnswerButton);
+
+				questionRow.getChildren().addAll(questionNameLabel, questionNameField, addAnswerButton);
+				questionList.getChildren().addAll(questionRow, answerList);
+			} else {
+				textInputDialog = createDialog("Please choose a name for your survey: ");
+				surveyNameField.setText(textInputDialog.showAndWait().get());
+			}
+		});
+	}
+
+	private Survey createSurvey() {
+		Survey newSurvey = new Survey(surveyNameField.getText());
+		return newSurvey;
+	}
+
+	private TextInputDialog createDialog(String message) {
+		TextInputDialog textInputDialog = new TextInputDialog();
+		textInputDialog.setContentText(message);
+		return textInputDialog;
+	}
+
+	private void addAnswerButtonFunctionality(VBox answerList, Button button) {
+		button.setOnAction(event -> {
+			TextField answer = new TextField();
+			VBox.setMargin(answer, new Insets(3, 0, 0, 20));
+			answerList.getChildren().add(answer);
+		});
+	}
+
+	private void saveSurvey(VBox questionList) {
+		if (!surveyExists) {
+			survey = createSurvey();
+		}
+		HashMap<String, String[]> surveyData = new HashMap();
+
+		ObservableList<Node> questionListChildren = questionList.getChildren();
+		for (Node questionListChild : questionListChildren) {
+			if (questionListChild.toString().contains("textField")) {
+
+			} else if (questionListChild.toString().contains("VBox")) {
+
+				VBox answerList = (VBox) questionListChild;
+				for (Node answer : answerList.getChildren()) {
+					TextField tempField = (TextField) answer;
+					System.out.println(tempField.getText());
+				}
+			}
+		}
+	}
+
+	public void populatePageFromData() {
+		// set survey name
+		// set question & set answers with buttons
+	}
+
+	public static CreateSurveyPageGUI getInstance() {
+		return instance;
+
+	}
+
+	public Scene getConstructSurveyScene() {
+		return makeSurveyScene;
+	}
+}

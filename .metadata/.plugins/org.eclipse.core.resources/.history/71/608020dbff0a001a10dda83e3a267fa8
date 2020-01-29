@@ -1,0 +1,25 @@
+package com.github.zerenat.SurveyApplication.GUI;
+
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import sun.security.jca.GetInstance.Instance;
+
+public class LoggedInPageGUI implements GUIPageInterface{
+	public static LoggedInPageGUI instance = new LoggedInPageGUI();
+	private Scene loggedInPageScene;
+	
+	private LoggedInPageGUI() {
+		Button createNewSurveyButton = new Button();
+		createNewSurveyButton.setText("Create survey");
+		Button editExistingSurveyButton = new Button();
+		editExistingSurveyButton.setText("Edit existing survey");
+		Button analyseResponsesButton = new Button();
+		analyseResponsesButton.setText("Analyse responses");
+	}
+
+	@Override
+	public Scene getScene() {
+		return loggedInPageScene;
+	}
+
+}

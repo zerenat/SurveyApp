@@ -1,0 +1,45 @@
+import javafx.scene.*;
+import javafx.scene.control.Button;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
+public class Main extends Application{
+	private static Stage mainStage;
+	public static Main main = new Main();
+	
+	public static void main(String [] args) {
+		launch(args);
+	}
+	
+	//private constructor
+	private Main () {}
+	
+	@Override
+	public void start(Stage primaryStage) {
+		Main.mainStage = primaryStage;
+		primaryStage.setTitle("Welcome to Surveys");
+        Button takeSurveyButton = new Button();
+        takeSurveyButton.setText("Take survey");
+        takeSurveyButton.setOnAction(new EventHandler<ActionEvent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+            	//get survey name from text field and construct an instance based on it
+            	
+            	mainStage.setScene(ConstructSurveyGUI.getInstance().getConstructSurveyScene());
+            	Survey newSurvey = new Survey("surveyNameFromInstance");
+            }
+        });
+        
+        StackPane root = new StackPane();
+        root.getChildren().add(takeSurveyButton);
+        primaryStage.setScene(new Scene(root, 500, 600));
+        primaryStage.show();
+	}
+	public Stage getMainStage() {
+		return mainStage;
+	}
+}

@@ -1,0 +1,59 @@
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.StackPane;
+
+public class ConstructSurveyGUI {
+	public static ConstructSurveyGUI constructSurveyGUI = new ConstructSurveyGUI();
+	private Scene makeSurvey;
+	private Label surveyNameLabel;
+	private TextField surveyNameField;
+	
+	
+	private ConstructSurveyGUI() {
+		
+		GridPane root = new GridPane();
+//	    this.makeSurvey = new Scene(root,500,600);
+//	
+//	    this.surveyNameLabel = new Label("Survey name:");
+//	    surveyNameLabel.setText("Survey Name");
+//	    this.surveyNameField = new TextField();
+//	    
+//	    root.add(surveyNameLabel, 2, 1);
+//	    root.add(surveyNameField, 2, 2);
+//	    root.
+//	    root.getChildren().add(surveyNameLabel);
+//	    root.getChildren().add(surveyNameField);
+		root.setGridLinesVisible(true);
+        final int numCols = 50 ;
+        final int numRows = 50 ;
+        for (int i = 0; i < numCols; i++) {
+            ColumnConstraints colConst = new ColumnConstraints();
+            colConst.setPercentWidth(100.0 / numCols);
+            root.getColumnConstraints().add(colConst);
+        }
+        for (int i = 0; i < numRows; i++) {
+            RowConstraints rowConst = new RowConstraints();
+            rowConst.setPercentHeight(100.0 / numRows);
+            root.getRowConstraints().add(rowConst);         
+        }
+       
+    
+	    
+	    
+	    
+	}
+	public static ConstructSurveyGUI getInstance() {
+		return constructSurveyGUI;
+	}
+	public Scene getConstructSurveyScene() {
+		return makeSurvey;
+	}
+}

@@ -1,0 +1,13 @@
+1574346100750	Move compilation unit
+1574346102515	Move compilation unit
+1574351651728	Rename local variable 'inputData'
+1574428507834	Rename field 'serverOutput'
+1574428514535	Rename field 'clientInput'
+1574428861234	Rename local variable 'inputMessage'
+1574428997549	Rename local variable 'inputMessage'
+1574429010597	Rename local variable 'inputObject'
+1574510979849	Rename method 'requestFailed'
+1574511137638	Delete element
+1574516863800	Rename local variable 't'
+1574516920417	Rename local variable 'objectO'
+1574518898904	Rename local variable 'dataserver'

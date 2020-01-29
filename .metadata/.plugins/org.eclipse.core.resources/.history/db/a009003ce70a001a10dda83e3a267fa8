@@ -1,0 +1,22 @@
+package com.github.zerenat.SurveyApplication.GUI;
+
+import javafx.scene.Scene;
+import sun.security.jca.GetInstance.Instance;
+
+public class LoggedInPageGUI implements GUIPageInterface{
+	public static LoggedInPageGUI instance = new LoggedInPageGUI();
+	private Scene loggedInPageScene;
+	
+	private LoggedInPageGUI() {}
+	
+	@Override
+	public  LoggedInPageGUI getInstance() {
+		return instance;
+	}
+
+	@Override
+	public Scene getScene() {
+		return loggedInPageScene;
+	}
+
+}

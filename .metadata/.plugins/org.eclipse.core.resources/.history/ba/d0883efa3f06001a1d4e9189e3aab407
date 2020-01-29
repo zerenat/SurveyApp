@@ -1,0 +1,130 @@
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+
+public class ConstructSurveyGUI {
+	public static ConstructSurveyGUI constructSurveyGUI = new ConstructSurveyGUI();
+	private boolean surveyExists;
+	private Scene makeSurvey;
+	private Label surveyNameLabel;
+	private TextField surveyNameField;
+	private Button addQuestionButton;
+	private Button saveSurvey;
+	private VBox questionList;
+	private TextInputDialog textInputDialog;
+	private Survey survey;
+	private int questionCount;
+	private HBox questionRow;
+    private VBox answerList;
+	
+	private ConstructSurveyGUI() {
+		surveyExists = false;
+		questionCount = 0;
+		GridPane root = new GridPane();
+	    makeSurvey = new Scene(root,500,600);
+	
+	    surveyNameLabel = new Label("Survey name:");
+	    surveyNameLabel.setText("Survey Name");
+	    surveyNameField = new TextField();
+	    questionList = new VBox();
+	    questionList.setSpacing(10);
+	    
+	    //root.setColumnSpan(surveyNameField, 3);
+	    addQuestionButton = new Button("Add question"); 
+	    saveSurvey = new Button("Save Survey");
+	    
+		//root.setGridLinesVisible(true);
+		ColumnConstraints columnConstraints = new ColumnConstraints();
+		columnConstraints.setFillWidth(false);
+		root.setHgap(10);
+		root.setVgap(10);
+		
+		RowConstraints rowConstraints = new RowConstraints();
+		rowConstraints.setPercentHeight(10);
+		
+		root.getColumnConstraints().add(columnConstraints);
+		root.getRowConstraints().add(rowConstraints);
+		
+		addQuestionButton.setOnAction(event -> {
+			if(surveyNameField.getLength() > 0) {
+	            textInputDialog = new TextInputDialog();
+	            textInputDialog.setContentText("Enter a question: ");
+	            
+	            String newQuestion = textInputDialog.showAndWait().get();
+	            
+	            if(!surveyExists) {
+	            	survey = new Survey(surveyNameField.getText());
+	            }
+	            
+	            questionCount++;
+	            questionRow = new HBox();
+	            answerList = new VBox();
+	            
+	            Label questionNameLabel = new Label();
+	            questionNameLabel.setText(questionCount + ". ");
+	            
+	            TextField questionNameField = new TextField();
+	            questionNameField.setText(newQuestion);
+	            
+	            Button addAnswerButton = new Button("Add Answer");
+	            addAnswerButtonFunctionality(addAnswerButton);
+	            
+	            questionRow.getChildren().addAll(questionNameLabel, questionNameField, addAnswerButton);
+	            questionList.getChildren().addAll(questionRow, answerList);
+			}
+			else {
+				textInputDialog = new TextInputDialog();
+				textInputDialog.setContentText("Please choose a name for your survey:");
+				surveyNameField.setText(textInputDialog.showAndWait().get());
+			}
+        });
+		
+		saveSurvey.setOnAction(event->{
+			saveSurvey();
+		});
+ 
+		root.add(surveyNameLabel, 1, 0);
+		root.add(surveyNameField, 2,0);
+		root.add(questionList, 2,1);
+		root.add(addQuestionButton, 2,2);
+		root.add(saveSurvey, 2, 3);
+			
+	}
+	private void addAnswerButtonFunctionality(Button button) {
+		button.setOnAction(event->{
+			TextField answer = new TextField();
+			answerList.setMargin(answer, new Insets(3,0,0,20));
+			answerList.getChildren().add(answer);
+		});
+	}
+	private void saveSurvey() {
+		for (Node questionNode: questionList.getChildren()) {
+			//questionNode = questionRow (vbox) and answerList (hbox) 
+			
+			//survey.addQuestion(question, answers);
+			
+		}
+	}
+	public static ConstructSurveyGUI getInstance() {
+		return constructSurveyGUI;
+	}
+	public Scene getConstructSurveyScene() {
+		return makeSurvey;
+	}
+}

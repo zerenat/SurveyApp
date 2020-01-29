@@ -1,0 +1,69 @@
+package com.github.zerenat.SurveyApplication.GUI;
+import javafx.scene.*;
+import javafx.scene.control.Button;
+
+import java.awt.List;
+import java.awt.event.KeyListener;
+import java.util.Observable;
+
+import javax.swing.text.html.ListView;
+
+import javafx.application.Application;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
+public class Main extends Application {
+	private static Stage mainStage;
+	public static MainPageGUI main = new MainPageGUI();
+
+	public static void main(String[] args) {
+		launch(args);
+	}
+
+	@Override
+	public void start(Stage primaryStage) {
+		this.mainStage = primaryStage;
+		primaryStage.setTitle("Welcome to Surveys");
+
+		Button takeSurveyButton = new Button();
+		takeSurveyButton.setText("Take survey");
+		takeSurveyButton.setOnAction(event -> {
+		});
+
+		Button makeSurveyButton = new Button();
+		makeSurveyButton.setText("Construct new Survey");
+		makeSurveyButton.setOnAction(event -> {
+			mainStage.setScene(CreateSurveyPageGUI.getInstance().getConstructSurveyScene());
+		});
+
+		Button loginButton = new Button();
+		loginButton.setText("Login");
+		loginButton.setOnAction(event -> {mainStage.setScene(LoginPageGUI.getInstance().getLoginPageScene());});
+		
+		Button registerButton = new Button();
+		registerButton.setText("Register");
+		registerButton.setOnAction(event -> {mainStage.setScene(RegisterPageGUI.getInstance().getRegisterPageScene());});
+
+		Node[] nodeList = new Node[] { takeSurveyButton, makeSurveyButton, loginButton, registerButton };
+
+		BorderPane root = new BorderPane();
+
+		HBox centerContainer = new HBox(2, nodeList);
+
+		primaryStage.setScene(new Scene(root, 300, 400));
+
+		root.setCenter(centerContainer);
+
+		primaryStage.show();
+	}
+
+	public Stage getMainStage() {
+		return mainStage;
+	}
+}

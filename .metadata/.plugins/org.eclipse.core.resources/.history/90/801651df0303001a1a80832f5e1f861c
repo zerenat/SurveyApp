@@ -1,0 +1,37 @@
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
+
+public class ConstructSurveyGUI {
+	public static ConstructSurveyGUI constructSurveyGUI = new ConstructSurveyGUI();
+	private Scene makeSurvey;
+	private Label surveyNameLabel;
+	private TextField surveyName;
+	
+	
+	private ConstructSurveyGUI() {
+		StackPane root = new StackPane();
+	    this.makeSurvey = new Scene(root,500,600);
+	
+	    this.surveyNameLabel = new Label("Survey name:");
+	    surveyNameLabel.setText("Survey Name");
+	    this.surveyName = new TextField();
+	    
+	    root.getChildren().add(surveyNameLabel);
+	    root.getChildren().add(surveyName);
+	    
+	    
+	    
+	}
+	public static ConstructSurveyGUI getInstance() {
+		return constructSurveyGUI;
+	}
+	public Scene getConstructSurveyScene() {
+		return makeSurvey;
+	}
+}

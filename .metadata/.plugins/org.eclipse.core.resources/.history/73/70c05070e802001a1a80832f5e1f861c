@@ -1,0 +1,19 @@
+import java.util.ArrayList;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+public class SurveyQuestion {
+	private String question;
+	private String [] answers;
+	
+	public SurveyQuestion(String surveyQuestion, String [] surveyAnswers) {
+		try {
+			JSONObject question = new JSONObject();
+			JSONArray answers = new JSONArray();
+			question.put(surveyQuestion, answers);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}	
+	}
+}

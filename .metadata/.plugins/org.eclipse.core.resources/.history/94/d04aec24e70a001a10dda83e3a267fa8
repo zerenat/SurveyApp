@@ -1,0 +1,11 @@
+package com.github.zerenat.SurveyApplication.GUI;
+
+import javafx.scene.Scene;
+import sun.security.jca.GetInstance.Instance;
+
+public interface GUIPageInterface {
+	
+	Object getInstance();
+	Scene getScene();
+	
+}

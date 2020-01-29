@@ -1,0 +1,53 @@
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.StackPane;
+
+public class ConstructSurveyGUI {
+	public static ConstructSurveyGUI constructSurveyGUI = new ConstructSurveyGUI();
+	private Scene makeSurvey;
+	private Label surveyNameLabel;
+	private Label empty;
+	private TextField surveyNameField;
+	
+	
+	private ConstructSurveyGUI() {
+		
+		GridPane root = new GridPane();
+	    this.makeSurvey = new Scene(root,500,600);
+	
+	    this.surveyNameLabel = new Label("Survey name:");
+	    this.empty = new Label();
+	    surveyNameLabel.setText("Survey Name");
+	    this.surveyNameField = new TextField();
+	   
+		root.setGridLinesVisible(true);
+		ColumnConstraints columnConstraints = new ColumnConstraints();
+		columnConstraints.setPercentWidth(5);
+		columnConstraints.setFillWidth(false);
+		surveyNameLabel.setPrefWidth(surveyNameLabel.getPrefWidth()+10);
+		
+		RowConstraints rowConstraints = new RowConstraints();
+		rowConstraints.setPercentHeight(25);
+		
+		root.getColumnConstraints().add(columnConstraints);
+		root.getRowConstraints().add(rowConstraints);
+		
+		root.add(empty, 0,0);
+		root.add(surveyNameLabel, 1, 0);
+		root.add(surveyNameField, 2,0);	
+	}
+	public static ConstructSurveyGUI getInstance() {
+		return constructSurveyGUI;
+	}
+	public Scene getConstructSurveyScene() {
+		return makeSurvey;
+	}
+}
